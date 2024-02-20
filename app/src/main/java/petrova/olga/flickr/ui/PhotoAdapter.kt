@@ -1,15 +1,27 @@
 package petrova.olga.flickr.ui
 
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
+import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import petrova.olga.flickr.R
+import petrova.olga.flickr.databinding.ListItemGalleryBinding
 import petrova.olga.flickr.models.GalleryItem
 
-class PhotoAdapter(private val galleryItem: List<GalleryItem>) :
-    RecyclerView.Adapter<PhotoHolder>() {
+class PhotoAdapter(
+    private val galleryItem: List<GalleryItem>
+) : RecyclerView.Adapter<PhotoHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoHolder {
-        val textView = TextView(parent.context)
-        return PhotoHolder(textView)
+        val binding = ListItemGalleryBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        val view = binding.image
+        return PhotoHolder(binding, view)
     }
 
     override fun getItemCount(): Int {
@@ -18,6 +30,10 @@ class PhotoAdapter(private val galleryItem: List<GalleryItem>) :
 
     override fun onBindViewHolder(holder: PhotoHolder, position: Int) {
         val galleryItem = galleryItem[position]
-        holder.bind(galleryItem.title)
+        val placeholder: Drawable = ContextCompat.getDrawable(
+            holder.itemView.context,
+            R.drawable.album
+        ) ?: ColorDrawable()
+        holder.bind(placeholder)
     }
 }

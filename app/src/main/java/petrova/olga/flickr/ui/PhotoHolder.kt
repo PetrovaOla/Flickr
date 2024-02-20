@@ -1,8 +1,13 @@
 package petrova.olga.flickr.ui
 
-import android.widget.TextView
+import android.graphics.drawable.Drawable
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import petrova.olga.flickr.databinding.ListItemGalleryBinding
 
-class PhotoHolder(itemTextView: TextView):RecyclerView.ViewHolder(itemTextView) {
-    val bind:(CharSequence) -> Unit = itemTextView::setText
+class PhotoHolder(
+    binding: ListItemGalleryBinding,
+    itemImageView: ImageView
+) : RecyclerView.ViewHolder(binding.root) {
+    val bind: (Drawable) -> Unit = itemImageView::setImageDrawable
 }
