@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -47,4 +50,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation (libs.retrofit)
     implementation(libs.converter.scalars)
+    implementation(libs.gson)
+    implementation(libs.converter.gson)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 }
